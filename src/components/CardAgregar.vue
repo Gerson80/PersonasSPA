@@ -3,6 +3,7 @@ import btnEnviar from '../components/btnSubmit.vue';
 import slider from '../components/InputSlider.vue';
 import Titulo from '../components/Label.vue';
 import Seleccion from '../components/Select.vue';
+import InputText from '../components/InputText.vue';
 
 import axios from 'axios'
 
@@ -10,15 +11,16 @@ import axios from 'axios'
 
 
 
+
 export default {
     components:{
-            btnEnviar,slider,Titulo,Seleccion
+            btnEnviar,slider,Titulo,Seleccion,InputText
         },
-    emits: ['valor'],
+    emits: ['valor', 'valorInput'],
     data() {
         return {
             Nombre: " ",
-            Edad: " ",
+            Edad:0,
             EstadoCivil: " ",
             Trabajo:" ",
             Residencia: " ",
@@ -29,10 +31,39 @@ export default {
             Personalidad2:" ",
             Personalidad3: " ",
             Personalidad4: " ",
-            Objetivos: " ",
+            Objetivos: [],
+            Objetivos2: [],
+            Objetivos3: [],
+            Objetivos4: [],
             Frustraciones: [],
+            Frustraciones2: [],
+            Frustraciones3: [],
+            Frustraciones4: [],
             Motivaciones: [],
-            Marcas: " "
+            Motivaciones2: [],
+            Motivaciones3: [],
+            Motivaciones4: [],
+            Marcas: [],
+            Marcas2: ' ',
+            Marcas3: ' ',
+            Marcas4: ' ',
+            Prueba: " ",
+            Contador: 1,
+            ContadorFrustraciones: 1,
+            ContadorMotivaciones: 1,
+            ContadorMarcas: 1,
+            DatoAgregar: false,
+            DatoAgregar2: false,
+            DatoAgregarFrustraciones: false,
+            DatoAgregar2Frustraciones: false,
+            DatoAgregarMotivacion: false,
+            DatoAgregar2Motivacion: false,
+            DatoAgregarMarcas: false,
+            DatoAgregar2Marcas: false,
+            ValMotivacion: 0,
+            ValMotivacion2: 0,
+            ValMotivacion3: 0
+            
 
 
 
@@ -40,6 +71,7 @@ export default {
 
 
         };
+        
     },
     mounted() {
         
@@ -71,11 +103,21 @@ export default {
 
 
 
+
                 //completar las variables, estas deben llamarse como las que se recibirán en el backend sin el símbolo del dolar $
             })
             .then((response) => {
             console.log(response.status)
-            });
+            console.log(this.Objetivos)
+            }
+            
+            
+            )
+            .catch(error => {
+    console.error(error);
+    // manejar el error
+  });
+            
 
 
         },
@@ -86,19 +128,184 @@ export default {
                 this.nombreCompleto=localStorage.getItem('nombreCompleto');
             },
             pers1(s){
-                this.pers01=s;
-                console.log(s);
+                this.Personalidad1=s;
+                console.log(this.Personalidad1);
             },
             pers2(s){
-                this.pers02=s;
-                console.log(s);
+                this.Personalidad2=s;
+                console.log(this.Personalidad2);
+            },
+            pers3(s){
+                this.Personalidad3=s;
+                console.log(this.Personalidad3);
+            },
+            pers4(s){
+                this.Personalidad4=s;
+                console.log(this.Personalidad4);
             },
 
             sele(s){
                 
                 console.log(s);
-            }
+            },
 
+            inputNormal(s){
+                
+                
+                this.Prueba= s
+                console.log(this.Prueba);
+            },
+
+            metodoSelect(s){
+                this.EstadoCivil= s
+                console.log(this.EstadoCivil);
+
+            },
+
+            AgregarInput(s){
+                this.Contador=this.Contador+s
+                if(this.Contador==2){
+                    this.DatoAgregar=true
+                }
+                if(this.Contador==3){
+                    this.DatoAgregar2=true
+                }
+            },
+
+            AgregarObjetivos(s){
+                this.Objetivos2=s
+                this.Objetivos=[{value: s}]
+                console.log(this.Objetivos)
+
+            },
+            AgregarObjetivos2(s){
+                this.Objetivos3=s
+                this.Objetivos=[{value: this.Objetivos2},{value: this.Objetivos3}]
+                console.log(this.Objetivos3)
+
+            },
+            AgregarObjetivos3(s){
+                this.Objetivos4=s
+                this.Objetivos=[{value: this.Objetivos2},{value: this.Objetivos3},{value: this.Objetivos4}]
+
+                console.log(this.Objetivos4)
+                console.log(this.Objetivos)
+
+
+            },
+
+            AgregarInput2(s){
+                this.ContadorFrustraciones=this.ContadorFrustraciones+s
+                if(this.ContadorFrustraciones==2){
+                    this.DatoAgregarFrustraciones=true
+                }
+                if(this.ContadorFrustraciones==3){
+                    this.DatoAgregar2Frustraciones=true
+                }
+            },
+
+            AgregarFrustraciones(s){
+                this.Frustraciones2=s
+                this.Frustraciones=[{value: s}]
+                console.log(this.Frustracioness)
+
+            },
+            AgregarFrustraciones2(s){
+                this.Frustraciones3=s
+                this.Frustraciones=[{value: this.Frustraciones2},{value: this.Frustraciones3}]
+                console.log(this.Frustraciones3)
+
+            },
+            AgregarFrustraciones3(s){
+                this.Frustraciones4=s
+                this.Frustraciones=[{value: this.Frustraciones2},{value: this.Frustraciones3},{value: this.Frustraciones4}]
+
+                console.log(this.Frustraciones4)
+                console.log(this.Frustraciones)
+
+
+            },
+
+            AgregarInput3(s){
+                this.ContadorMotivaciones=this.ContadorMotivaciones+s
+                if(this.ContadorMotivaciones==2){
+                    this.DatoAgregarMotivacion=true
+                }
+                if(this.ContadorMotivaciones==3){
+                    this.DatoAgregar2Motivacion=true
+                }
+            },
+            AgregarMotivaciones(s){
+                this.Motivaciones2=s
+                this.Motivaciones={value: s,'porcentaje': this.ValMotivacion}
+                console.log(this.Motivaciones)
+
+            },
+            AgregarMotivaciones2(s){
+                this.Motivaciones3=s
+                this.Motivaciones=[{value: this.Motivaciones2,'porcentaje': this.ValMotivacion},{value: this.Motivaciones3,'porcentaje':s}]
+                console.log(this.Motivaciones3)
+
+            },
+            AgregarMotivaciones3(s){
+                this.Motivaciones4=s
+                this.Motivaciones=[{value: this.Motivaciones2},{value: this.Motivaciones3},{value: this.Motivaciones4}]
+
+                console.log(this.Motivaciones4)
+                console.log(this.Motivaciones)
+
+
+            },
+
+            ValorMotivacion(s){
+                this.ValMotivacion=s;
+                this.Motivaciones={value: this.Motivaciones2,'porcentaje':s}
+                console.log(this.Motivaciones);
+            },
+            ValorMotivacion2(s){
+                this.ValMotivacion2=s;
+                this.Motivaciones=[{value: this.Motivaciones2,'porcentaje': this.ValMotivacion},{value: this.Motivaciones3,'porcentaje': this.ValMotivacion2}]
+                
+                
+            },
+            ValorMotivacion3(s){
+                this.ValMotivacion3=s;
+                this.Motivaciones=[{value: this.Motivaciones2,'porcentaje': this.ValMotivacion},{value: this.Motivaciones3,'porcentaje': this.ValMotivacion2},{value: this.Motivaciones4,'porcentaje': this.ValMotivacion3}]
+                console.log(this.Motivaciones);
+            },
+
+            AgregarInput4(s){
+                this.ContadorMarcas=this.ContadorMarcas+s
+                if(this.ContadorMarcas==2){
+                    this.DatoAgregarMarcas=true
+                }
+                if(this.ContadorMarcas==3){
+                    this.DatoAgregar2Marcas=true
+                }
+            },
+
+            AgregarMarcas(s){
+                this.Marcas2=s
+                this.Marcas=  s
+                console.log(this.Marcas)
+
+            },
+            AgregarMarcas2(s){
+                this.Marcas3= s
+                this.Marcas= this.Marcas+','+this.Marcas3
+                console.log(this.Marcas3)
+                console.log(this.Marcas)
+
+            },
+            AgregarMarcas3(s){
+                this.Marcas4=s
+                this.Marcas= this.Marcas+','+this.Marcas4
+
+                console.log(this.Marcas4)
+                console.log(this.Marcas)
+
+
+            },
 
     }
 }
@@ -123,7 +330,7 @@ export default {
                     
                     </div>
                     <div class="md:w-2/3">
-                    <input v-model="Nombre" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" type="text" >
+                        <InputText  @valorInput="inputNormal" v-model="Nombre"></InputText>
                     </div>
                 </div>
                 <div class="md:flex md:items-center mb-6">
@@ -131,7 +338,7 @@ export default {
                         <Titulo Datos="Edad" />
                     </div>
                     <div class="md:w-2/3">
-                    <input v-model="Edad" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" type="text" >
+                        <InputText  @valorInput="inputNormal" v-model="Edad"></InputText>
                     </div>
                 </div>
                 <div class="md:flex md:items-center mb-6">
@@ -140,7 +347,7 @@ export default {
                     </div>
                     <div class="md:w-2/3">
                        
-                       <Seleccion @valor="sele" :Datos='{"Uno": "Soltero","Dos": "Casado","Tres": "Divorciado","Cuatro": "Separado","Cinco": "Union libre","Seis": "Viudo"} '     />
+                       <Seleccion @valor="metodoSelect" :Datos='{"Uno": "Soltero","Dos": "Casado","Tres": "Divorciado","Cuatro": "Separado","Cinco": "Union libre","Seis": "Viudo"} '     />
                     </div>
                     
                 </div>
@@ -149,7 +356,7 @@ export default {
                         <Titulo Datos="Trabajo" />
                     </div>
                     <div class="md:w-2/3">
-                    <input v-model="Trabajo" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" type="text" >
+                        <InputText  @valorInput="inputNormal" v-model="Trabajo"></InputText>
                     </div>
                 </div>
                 <div class="md:flex md:items-center mb-6">
@@ -157,7 +364,7 @@ export default {
                         <Titulo Datos="Residencia" />
                     </div>
                     <div class="md:w-2/3">
-                    <input v-model="Residencia" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" type="text" >
+                        <InputText  @valorInput="inputNormal" v-model="Residencia"></InputText>
                     </div>
                 </div>
                 <div class="md:flex md:items-center mb-6">
@@ -165,7 +372,7 @@ export default {
                         <Titulo Datos="Cita" />
                     </div>
                     <div class="md:w-2/3">
-                    <input v-model="Cita" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" type="text" >
+                        <InputText  @valorInput="inputNormal" v-model="Cita"></InputText>
                     </div>
                 </div>
                 <div class="md:flex md:items-center mb-6">
@@ -173,7 +380,7 @@ export default {
                         <Titulo Datos="Cita autor" />
                     </div>
                     <div class="md:w-2/3">
-                    <input v-model="CitaAutor" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" type="text">
+                        <InputText  @valorInput="inputNormal" v-model="CitaAutor"></InputText>
                     </div>
                 </div>
                 <div class="md:flex md:items-center mb-6">
@@ -181,7 +388,7 @@ export default {
                         <Titulo Datos="Bio" />
                     </div>
                     <div class="md:w-2/3">
-                    <input v-model="Bio" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" type="text" >
+                        <InputText  @valorInput="inputNormal" v-model="Bio"></InputText>
                     </div>
                 </div>
                 <div class="md:flex md:items-center mb-6">
@@ -195,7 +402,7 @@ export default {
                 </div>
                 <div class="md:flex md:items-center mb-6">
                     <div class="md:w-full">
-                        <slider @person="pers1">
+                        <slider @person="pers2">
                             
                             <h3 class="block text-black font-bold md:text-right mb-1 md:mb-0 pr-4">Personalidad 2</h3>
                         
@@ -205,7 +412,7 @@ export default {
 
                 <div class="md:flex md:items-center mb-6">
                     <div class="md:w-full">
-                        <slider @person="pers1">
+                        <slider @person="pers3">
                             
                             <h3 class="block text-black font-bold md:text-right mb-1 md:mb-0 pr-4">Personalidad 3</h3>
                         
@@ -214,43 +421,113 @@ export default {
                 </div>
                 <div class="md:flex md:items-center mb-6">
                     <div class="md:w-full">
-                        <slider @person="pers1">
+                        <slider @person="pers4">
                             
                             <h3 class="block text-black font-bold md:text-right mb-1 md:mb-0 pr-4">Personalidad 4</h3>
                         
                         </slider>
                     </div>
                 </div>
-                <div class="md:flex md:items-center mb-6">
+                <div class="md:flex md:items-center mb-6"> 
                     <div class="md:w-1/3">
                         <Titulo Datos="Objetivos" />
+                        <div >
+                            <button @click="AgregarInput(1)" class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
+                                    Agregar
+                            </button>
+                        </div>
                     </div>
                     <div class="md:w-2/3">
-                    <input v-model="Objetivos" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" type="text" >
+                        <InputText  @valorInput="AgregarObjetivos"  ></InputText>
+                        
+                    </div>
+                    <div class="md:w-2/3" v-show=this.DatoAgregar >
+                        <InputText  @valorInput="AgregarObjetivos2"  ></InputText>
+                    </div>
+                    <div class="md:w-2/3" v-show=this.DatoAgregar2 >
+                        <InputText  @valorInput="AgregarObjetivos3"  ></InputText>
                     </div>
                 </div>
+
+
+
+
+
+
+
+
+
+
                 <div class="md:flex md:items-center mb-6">
                     <div class="md:w-1/3">
                         <Titulo Datos="Frustraciones" />
+                        <div >
+                            <button @click="AgregarInput2(1)" class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
+                                    Agregar
+                            </button>
+                        </div>
                     </div>
                     <div class="md:w-2/3">
-                    <input v-model="Objetivos" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" type="text" >
+                        <InputText  @valorInput="AgregarFrustraciones"  ></InputText>
+                    </div>
+                    <div class="md:w-2/3" v-show=this.DatoAgregarFrustraciones >
+                        <InputText  @valorInput="AgregarFrustraciones2"  ></InputText>
+                    </div>
+                    <div class="md:w-2/3" v-show=this.DatoAgregar2Frustraciones >
+                        <InputText  @valorInput="AgregarFrustraciones3"  ></InputText>
                     </div>
                 </div>
                 <div class="md:flex md:items-center mb-6">
                     <div class="md:w-1/3">
                         <Titulo Datos="Motivaciones" />
+                        <div >
+                            <button @click="AgregarInput3(1)" class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
+                                    Agregar
+                            </button>
+                        </div>
                     </div>
                     <div class="md:w-2/3">
-                    <input v-model="Objetivos" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" type="text" >
+                        <InputText  @valorInput="AgregarMotivaciones"  ></InputText>
+                        <slider @person="ValorMotivacion">
+                            
+                            <h3 class="block text-black font-bold md:text-right mb-1 md:mb-0 pr-4">Porcentaje</h3>
+                        
+                        </slider>
+                    </div>
+                    <div class="md:w-2/3" v-show=this.DatoAgregarMotivacion >
+                        <InputText  @valorInput="AgregarMotivaciones2"  ></InputText>
+                        <slider @person="ValorMotivacion2">
+                            
+                            <h3 class="block text-black font-bold md:text-right mb-1 md:mb-0 pr-4">Porcentaje</h3>
+                        
+                        </slider>
+                    </div>
+                    <div class="md:w-2/3" v-show=this.DatoAgregar2Motivacion >
+                        <InputText  @valorInput="AgregarMotivaciones3"  ></InputText>
+                        <slider @person="ValorMotivacion3">
+                            
+                            <h3 class="block text-black font-bold md:text-right mb-1 md:mb-0 pr-4">Porcentaje</h3>
+                        
+                        </slider>
                     </div>
                 </div>
                 <div class="md:flex md:items-center mb-6">
                     <div class="md:w-1/3">
                         <Titulo Datos="Marcas" />
+                        <div >
+                            <button @click="AgregarInput4(1)" class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
+                                    Agregar
+                            </button>
+                        </div>
                     </div>
                     <div class="md:w-2/3">
-                    <input v-model="Marcas" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" type="text" >
+                        <InputText  @valorInput="AgregarMarcas"  ></InputText>
+                    </div>
+                    <div class="md:w-2/3" v-show=this.DatoAgregarMarcas >
+                        <InputText  @valorInput="AgregarMarcas2"  ></InputText>
+                    </div>
+                    <div class="md:w-2/3" v-show=this.DatoAgregar2Marcas >
+                        <InputText  @valorInput="AgregarMarcas3"  ></InputText>
                     </div>
                 </div>
 

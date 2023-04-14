@@ -8,4 +8,11 @@ module.exports = {
     extend: {},
   },
   plugins: [],
+  link: [
+    {
+    rel: 'stylesheet',
+    href:
+    "https://fonts.googleapis.com"
+    }
+    ]
 }
