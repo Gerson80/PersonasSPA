@@ -39,15 +39,3 @@
 
 </template>
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
-
-
-
-
-*{
-
-    font-family: 'Creepster', cursive;
-    
-  }
-</style>

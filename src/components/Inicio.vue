@@ -58,7 +58,7 @@ export default {
   
 
     <div class="text-sm text-gray-600 flex">
-      <img class="w-80 h-full rounded-xl mr-4" src="../imagenes/Rick.jpg" alt="Avatar of Jonathan Reinink">
+      <img class="w-80 h-full rounded-xl mr-4" src="" alt="Avatar of Jonathan Reinink">
                   
     </div>
     <div >          

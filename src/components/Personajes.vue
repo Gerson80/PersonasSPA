@@ -4,7 +4,7 @@ import Botones from '@/components/Botones.vue'
 import CardPersonajes from './CardPersonajes.vue'
 
 
-let API_URL = `http://isclab.com.mx/personasuxd/`
+let API_URL = `/api/getPersonasUxd.php`
 
 export default {
     data() {
@@ -17,13 +17,13 @@ export default {
     mounted() {
         axios.get(API_URL)
             .then((response) => {
-            this.personajes = response.data;
+            this.personajes = response.data.personas;
         })
 
     },
     methods: {
         pag(num) {
-            API_URL = "http://isclab.com.mx/personasuxd/getPersonasUxd.php?id=" + num;
+            API_URL = "" + num;
             console.log(API_URL);
             axios.get(API_URL)
                 .then((response) => {
@@ -34,7 +34,7 @@ export default {
             this.cont++;
         },
         pag2(num) {
-            API_URL = "http://isclab.com.mx/personasuxd/getPersonasUxd.php?id=" + num;
+            API_URL = "" + num;
             console.log(API_URL);
             axios.get(API_URL)
                 .then((response) => {
@@ -78,16 +78,11 @@ export default {
     <div> </div>
     <div> </div>
 
-    <div @click="pag2(cont)">
-      <Botones msg="Atras" />
-    </div>
-    <div @click="pag(cont)">
-      <Botones msg="Siguiente" />
-    </div>
+
     
   </div>
 
-  <div  class="grid grid-cols-5 gap-4 px-10">
+  <div  class="grid grid-cols-3 gap-4 px-10">
     
     
       <div v-for="p in personajes">
@@ -95,7 +90,7 @@ export default {
        
         
       </div>
-      <p>{{ this.personajes }}</p>
+   
  
   </div>
   <div class="grid gap-4 grid-cols-8 grid-rows-1 text-center">
@@ -103,12 +98,7 @@ export default {
     <div> </div>
     <div> </div>
 
-    <div @click="pag2(cont)">
-      <Botones msg="Atras" />
-    </div>
-    <div @click="pag(cont)">
-      <Botones msg="Siguiente" />
-    </div>
+
     
   </div>
 

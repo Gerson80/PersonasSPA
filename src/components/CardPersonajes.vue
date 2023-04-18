@@ -9,7 +9,7 @@
     Modal,
     },
     props: {
-    Datos: String
+    Datos: Object
   },
     
     data () {
@@ -17,11 +17,11 @@
     isModalVisible: false,
     };
     },
-    
+
     methods: {
     showModal() {
     this.isModalVisible = true;
-    CardPersonajes :Datos= p  
+
     },
     closeModal() {
     this.isModalVisible = false;
@@ -44,16 +44,18 @@
 
 <template>
 
-        <div class="max-w-sm w-full lg:max-w-full lg:flex p-10 ">
+        <div class="max-w-sm w-full h-full lg:max-w-full lg:flex p-10 ">
 
-            <button type="button"  @click="showModal" class=" btn hover:bg-green-500  bg-lime-400 rounded-3xl overflow-hidden shadow-xl rounded-b  lg:rounded-xl p-4 flex flex-col justify-between leading-normal">
+            <button type="button"  @click="showModal" class=" w-full btn hover:bg-green-500  bg-lime-400 rounded-3xl overflow-hidden shadow-xl rounded-b  lg:rounded-xl p-4 flex flex-col justify-between leading-normal">
                 <div class="">
-                    <div class="w-32 h-48 conteiner-md">
-                        <img class="w-28 h-48 rounded-xl mr-4" v-bind:src=  Datos.image  alt="Avatar of Jonathan Reinink">
-                    </div>
                     
+                    
+                    <div class="">
+                        <h1 class=" font-bold text-2xl mb-2 text-center">{{ Datos.nombre.toUpperCase() }}</h1>
+                    </div>
+
                     <div class="h-28">
-                        <h1 class="font-bold text-3xl mb-2 text-center">{{ Datos.name }}</h1>
+                        <h1 class="  text-lg mb-2">{{ Datos.cita }}</h1>
                     </div>
                     
                 </div>

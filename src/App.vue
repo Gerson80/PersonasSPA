@@ -10,19 +10,15 @@ import Personajes from './components/Personajes.vue'
 </script>
 
 <template >
-  <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com" family="Nuevo">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
-  </head>
+
 
  
 
   <header >
-
+ 
 
     <div>
-      <Titulo msg="Rick and Morty" />
+      <Titulo msg="PERSONAS" />
       <Navegacion></Navegacion>
       
 
@@ -31,10 +27,26 @@ import Personajes from './components/Personajes.vue'
     </div>
   </header>
 
-
-  <RouterView />
+ 
+    <RouterView />
+ 
+  
 </template>
 
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@700&family=Schibsted+Grotesk&display=swap');
+
+
+
+
+*{
+  font-family: 'Dongle', sans-serif;
+font-family: 'Schibsted Grotesk', sans-serif;
+
+    
+  }
+</style>
 
 
 
