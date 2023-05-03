@@ -62,7 +62,11 @@ export default {
             DatoAgregar2Marcas: false,
             ValMotivacion: 0,
             ValMotivacion2: 0,
-            ValMotivacion3: 0
+            ValMotivacion3: 0,
+            isModalVisible: true,
+            isModalVisible2: true,
+            isModalVisible3: true,
+            isModalVisible4: true,
             
 
 
@@ -169,6 +173,7 @@ export default {
                 }
                 if(this.Contador==3){
                     this.DatoAgregar2=true
+                    this.isModalVisible = false;
                 }
             },
 
@@ -186,10 +191,12 @@ export default {
             },
             AgregarObjetivos3(s){
                 this.Objetivos4=s
+                
                 this.Objetivos=[{value: this.Objetivos2},{value: this.Objetivos3},{value: this.Objetivos4}]
 
                 console.log(this.Objetivos4)
                 console.log(this.Objetivos)
+                
 
 
             },
@@ -200,6 +207,7 @@ export default {
                     this.DatoAgregarFrustraciones=true
                 }
                 if(this.ContadorFrustraciones==3){
+                    this.isModalVisible2 = false;
                     this.DatoAgregar2Frustraciones=true
                 }
             },
@@ -233,6 +241,7 @@ export default {
                 }
                 if(this.ContadorMotivaciones==3){
                     this.DatoAgregar2Motivacion=true
+                    this.isModalVisible3 = false;
                 }
             },
             AgregarMotivaciones(s){
@@ -281,6 +290,7 @@ export default {
                 }
                 if(this.ContadorMarcas==3){
                     this.DatoAgregar2Marcas=true
+                    this.isModalVisible4 = false;
                 }
             },
 
@@ -317,114 +327,134 @@ export default {
 
 
 <template >
-    <div class="flex justify-center">
-        <div class="block max-w-sm rounded-lg p-6 shadow-lg bg-sky-500 ">
+    <div class="">
+        <div class="  rounded-lg p-10 shadow-lg  ">
             <div class="text-center p-2 font-bold text-xl" >
                 <h1>Personalidad</h1>
             </div>
-            <form class="w-full max-w-sm" method="get">
-                <div class="md:flex md:items-center mb-6">
-                    <div class="md:w-1/3">
-                    
-                    <Titulo Datos="Nombre" />
-                    
-                    </div>
+            <div class=" grid grid-cols-3" >
+                <p></p>
+                <img src="./per.png" alt="Imagen de ejemplo" width="200" height="200" class="place-self-center" id="mi-imagen">
+            </div>
+           
+            <form class="w-full " method="get">
+                <div class="grid grid-cols-3 pr-10 pl-10">
+                    <div class="md:flex md:items-center mb-6">
+                        <div class="">
+                        
+                        <Titulo Datos="Nombre" />
+                        
+                        </div>
                     <div class="md:w-2/3">
                         <InputText  @valorInput="inputNormal" v-model="Nombre"></InputText>
                     </div>
+
+
                 </div>
-                <div class="md:flex md:items-center mb-6">
-                    <div class="md:w-1/3">
-                        <Titulo Datos="Edad" />
+                
+                
+                    <div class="md:flex md:items-center mb-6">
+                        <div class="md:w-1/3">
+                            <Titulo Datos="Edad" />
+                        </div>
+                        <div class="md:w-2/3">
+                            <InputText  @valorInput="inputNormal" v-model="Edad"></InputText>
+                        </div>
                     </div>
-                    <div class="md:w-2/3">
-                        <InputText  @valorInput="inputNormal" v-model="Edad"></InputText>
-                    </div>
-                </div>
-                <div class="md:flex md:items-center mb-6">
-                    <div class="md:w-1/3">
-                        <Titulo Datos="Estado civil" />
-                    </div>
-                    <div class="md:w-2/3">
-                       
-                       <Seleccion @valor="metodoSelect" :Datos='{"Uno": "Soltero","Dos": "Casado","Tres": "Divorciado","Cuatro": "Separado","Cinco": "Union libre","Seis": "Viudo"} '     />
-                    </div>
+
+                    <div class="md:flex md:items-center mb-6">
+                        <div  class="md:w-1/3">
+                            <Titulo Datos="Estado civil" />
+                        </div>
+                        <div class="md:w-2/3">
+                        
+                        <Seleccion @valor="metodoSelect" :Datos='{"Uno": "Soltero","Dos": "Casado","Tres": "Divorciado","Cuatro": "Separado","Cinco": "Union libre","Seis": "Viudo"} '     />
+                        </div>
                     
+                    </div>
+
                 </div>
-                <div class="md:flex md:items-center mb-6">
-                    <div class="md:w-1/3">
-                        <Titulo Datos="Trabajo" />
+
+                <div class="grid grid-cols-2 pr-10 pl-10">
+                    
+                    <div class="md:flex md:items-center mb-6">
+                        <div class="md:w-1/3">
+                            <Titulo Datos="Trabajo" />
+                        </div>
+                        <div class="md:w-2/3">
+                            <InputText  @valorInput="inputNormal" v-model="Trabajo"></InputText>
+                        </div>
                     </div>
-                    <div class="md:w-2/3">
-                        <InputText  @valorInput="inputNormal" v-model="Trabajo"></InputText>
+
+                    <div class="md:flex md:items-center mb-6">
+                        <div class="md:w-1/3">
+                            <Titulo Datos="Residencia" />
+                        </div>
+                        <div class="md:w-2/3">
+                            <InputText  @valorInput="inputNormal" v-model="Residencia"></InputText>
+                        </div>
                     </div>
+
                 </div>
-                <div class="md:flex md:items-center mb-6">
-                    <div class="md:w-1/3">
-                        <Titulo Datos="Residencia" />
-                    </div>
-                    <div class="md:w-2/3">
-                        <InputText  @valorInput="inputNormal" v-model="Residencia"></InputText>
-                    </div>
-                </div>
-                <div class="md:flex md:items-center mb-6">
-                    <div class="md:w-1/3">
+                
+                
+                
+                
+                <div class="md:flex md:items-center mb-6 pr-10 pl-10">
+                    <div class="">
                         <Titulo Datos="Cita" />
                     </div>
-                    <div class="md:w-2/3">
+                    <div class="w-full">
                         <InputText  @valorInput="inputNormal" v-model="Cita"></InputText>
                     </div>
                 </div>
-                <div class="md:flex md:items-center mb-6">
-                    <div class="md:w-1/3">
+                <div class="md:flex md:items-center mb-6 pr-10 pl-10 ">
+                    <div class="">
                         <Titulo Datos="Cita autor" />
                     </div>
-                    <div class="md:w-2/3">
+                    <div class="w-full">
                         <InputText  @valorInput="inputNormal" v-model="CitaAutor"></InputText>
                     </div>
                 </div>
-                <div class="md:flex md:items-center mb-6">
-                    <div class="md:w-1/3">
+                <div class="md:flex md:items-center mb-6 pr-10 pl-10">
+                    <div class="">
                         <Titulo Datos="Bio" />
                     </div>
-                    <div class="md:w-2/3">
+                    <div class="w-full">
                         <InputText  @valorInput="inputNormal" v-model="Bio"></InputText>
+                        
                     </div>
                 </div>
                 <div class="md:flex md:items-center mb-6">
                     <div class="md:w-full">
-                        <slider @person="pers1" Datos="Personalidad 1">
+                        <slider @person="pers1" Datos="Emprendedor">
                             
-                            <h3 class="block text-black font-bold md:text-right mb-1 md:mb-0 pr-4">Personalidad 1</h3>
-                        
+                           
                         </slider>
                     </div>
                 </div>
                 <div class="md:flex md:items-center mb-6">
                     <div class="md:w-full">
-                        <slider @person="pers2">
+                        <slider @person="pers2" Datos="Relajada">
                             
-                            <h3 class="block text-black font-bold md:text-right mb-1 md:mb-0 pr-4">Personalidad 2</h3>
-                        
+                            
                         </slider>
                     </div>
                 </div>
 
                 <div class="md:flex md:items-center mb-6">
                     <div class="md:w-full">
-                        <slider @person="pers3">
+                        <slider @person="pers3" Datos="Detallada" >
                             
-                            <h3 class="block text-black font-bold md:text-right mb-1 md:mb-0 pr-4">Personalidad 3</h3>
-                        
+                          
                         </slider>
                     </div>
                 </div>
                 <div class="md:flex md:items-center mb-6">
                     <div class="md:w-full">
-                        <slider @person="pers4">
+                        <slider @person="pers4" Datos="Existencialista">
                             
-                            <h3 class="block text-black font-bold md:text-right mb-1 md:mb-0 pr-4">Personalidad 4</h3>
-                        
+                           
                         </slider>
                     </div>
                 </div>
@@ -432,19 +462,19 @@ export default {
                     <div class="md:w-1/3">
                         <Titulo Datos="Objetivos" />
                         <div >
-                            <button @click="AgregarInput(1)" class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
+                            <button v-show="isModalVisible" @click="AgregarInput(1)" class="shadow bg-green-500 hover:bg-green-800 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
                                     Agregar
                             </button>
                         </div>
                     </div>
-                    <div class="md:w-2/3">
+                    <div class="md:w-2/3 p-4">
                         <InputText  @valorInput="AgregarObjetivos"  ></InputText>
                         
                     </div>
-                    <div class="md:w-2/3" v-show=this.DatoAgregar >
+                    <div class="md:w-2/3 p-4" v-show=this.DatoAgregar >
                         <InputText  @valorInput="AgregarObjetivos2"  ></InputText>
                     </div>
-                    <div class="md:w-2/3" v-show=this.DatoAgregar2 >
+                    <div class="md:w-2/3 p-4" v-show=this.DatoAgregar2 >
                         <InputText  @valorInput="AgregarObjetivos3"  ></InputText>
                     </div>
                 </div>
@@ -462,18 +492,18 @@ export default {
                     <div class="md:w-1/3">
                         <Titulo Datos="Frustraciones" />
                         <div >
-                            <button @click="AgregarInput2(1)" class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
+                            <button v-show="isModalVisible2" @click="AgregarInput2(1)" class="shadow bg-green-500 hover:bg-green-800 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
                                     Agregar
                             </button>
                         </div>
                     </div>
-                    <div class="md:w-2/3">
+                    <div class="md:w-2/3 p-4">
                         <InputText  @valorInput="AgregarFrustraciones"  ></InputText>
                     </div>
-                    <div class="md:w-2/3" v-show=this.DatoAgregarFrustraciones >
+                    <div class="md:w-2/3 p-4" v-show=this.DatoAgregarFrustraciones >
                         <InputText  @valorInput="AgregarFrustraciones2"  ></InputText>
                     </div>
-                    <div class="md:w-2/3" v-show=this.DatoAgregar2Frustraciones >
+                    <div class="md:w-2/3 p-4" v-show=this.DatoAgregar2Frustraciones >
                         <InputText  @valorInput="AgregarFrustraciones3"  ></InputText>
                     </div>
                 </div>
@@ -481,12 +511,12 @@ export default {
                     <div class="md:w-1/3">
                         <Titulo Datos="Motivaciones" />
                         <div >
-                            <button @click="AgregarInput3(1)" class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
+                            <button v-show="isModalVisible3" @click="AgregarInput3(1)" class="shadow bg-green-500 hover:bg-green-800 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
                                     Agregar
                             </button>
                         </div>
                     </div>
-                    <div class="md:w-2/3">
+                    <div class="md:w-2/3 p-4">
                         <InputText  @valorInput="AgregarMotivaciones"  ></InputText>
                         <slider @person="ValorMotivacion">
                             
@@ -494,7 +524,7 @@ export default {
                         
                         </slider>
                     </div>
-                    <div class="md:w-2/3" v-show=this.DatoAgregarMotivacion >
+                    <div class="md:w-2/3 p-4" v-show=this.DatoAgregarMotivacion >
                         <InputText  @valorInput="AgregarMotivaciones2"  ></InputText>
                         <slider @person="ValorMotivacion2">
                             
@@ -502,7 +532,7 @@ export default {
                         
                         </slider>
                     </div>
-                    <div class="md:w-2/3" v-show=this.DatoAgregar2Motivacion >
+                    <div class="md:w-2/3 p-4" v-show=this.DatoAgregar2Motivacion >
                         <InputText  @valorInput="AgregarMotivaciones3"  ></InputText>
                         <slider @person="ValorMotivacion3">
                             
@@ -515,7 +545,7 @@ export default {
                     <div class="md:w-1/3">
                         <Titulo Datos="Marcas" />
                         <div >
-                            <button @click="AgregarInput4(1)" class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
+                            <button v-show="isModalVisible4" @click="AgregarInput4(1)" class="shadow bg-green-500 hover:bg-green-800 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
                                     Agregar
                             </button>
                         </div>
@@ -523,10 +553,10 @@ export default {
                     <div class="md:w-2/3">
                         <InputText  @valorInput="AgregarMarcas"  ></InputText>
                     </div>
-                    <div class="md:w-2/3" v-show=this.DatoAgregarMarcas >
+                    <div class="md:w-2/3 p-4" v-show=this.DatoAgregarMarcas >
                         <InputText  @valorInput="AgregarMarcas2"  ></InputText>
                     </div>
-                    <div class="md:w-2/3" v-show=this.DatoAgregar2Marcas >
+                    <div class="md:w-2/3 p-4" v-show=this.DatoAgregar2Marcas >
                         <InputText  @valorInput="AgregarMarcas3"  ></InputText>
                     </div>
                 </div>
@@ -537,10 +567,10 @@ export default {
 
                 
                 <div class="md:flex md:items-center">
-                    <div class="md:w-1/3"></div>
-                    <div class="md:w-2/3">
-                        <div @click="Enviar()">
-                            <button class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
+                    <div class="w-full"></div>
+                    <div class="w-full">
+                        <div @click="Enviar()" class="items-center">
+                            <button class="shadow bg-green-500 hover:bg-green-800 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
                                 Enviar
                             </button>
                         </div>

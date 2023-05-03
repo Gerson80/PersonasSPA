@@ -2,6 +2,7 @@
     import Personajes from '@/components/Personajes.vue'
     import Modal from '@/components/Modal.vue'
     import informacion from '@/components/Modal.vue'
+    import axios from 'axios'
 
     export default {
     name: 'app',
@@ -15,17 +16,25 @@
     data () {
     return {
     isModalVisible: false,
+    personaje: [],
+    API_URL: ""
+    
     };
     },
 
     methods: {
     showModal() {
-    this.isModalVisible = true;
+
+        this.isModalVisible = true;
+    
+    
+            
 
     },
     closeModal() {
     this.isModalVisible = false;
-    }
+    },
+    
     },
 
 
@@ -46,7 +55,7 @@
 
         <div class="max-w-sm w-full h-full lg:max-w-full lg:flex p-10 ">
 
-            <button type="button"  @click="showModal" class=" w-full btn hover:bg-green-500  bg-lime-400 rounded-3xl overflow-hidden shadow-xl rounded-b  lg:rounded-xl p-4 flex flex-col justify-between leading-normal">
+            <button type="button"  @click="showModal"  class=" w-full btn hover:bg-green-500  bg-lime-400 rounded-3xl overflow-hidden shadow-xl rounded-b  lg:rounded-xl p-4 flex flex-col justify-between leading-normal">
                 <div class="">
                     
                     
